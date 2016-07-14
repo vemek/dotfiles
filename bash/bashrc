@@ -1,0 +1,234 @@
+# ~/.bashrc: executed by bash(1) for non-login shells.
+# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
+# for examples
+
+# If not running interactively, don't do anything
+[ -z "$PS1" ] && return
+
+# don't put duplicate lines in the history. See bash(1) for more options
+export HISTCONTROL=ignoredups
+# ... and ignore same sucessive entries.
+export HISTCONTROL=ignoreboth
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+# set variable identifying the chroot you work in (used in the prompt below)
+if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
+    debian_chroot=$(cat /etc/debian_chroot)
+fi
+
+# set a fancy prompt (non-color, unless we know we "want" color)
+case "$TERM" in
+    xterm-color) color_prompt=yes;;
+esac
+
+# uncomment for a colored prompt, if the terminal has the capability; turned
+# off by default to not distract the user: the focus in a terminal window
+# should be on the output of commands, not on the prompt
+force_color_prompt=yes
+
+if [ -n "$force_color_prompt" ]; then
+    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+	# We have color support; assume it's compliant with Ecma-48
+	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+	# a case would tend to support setf rather than setaf.)
+	color_prompt=yes
+    else
+	color_prompt=
+    fi
+fi
+
+# If this is an xterm set the title to user@host:dir
+case "$TERM" in
+xterm*|rxvt*)
+    PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD/$HOME/~}\007"'
+    ;;
+*)
+    ;;
+esac
+
+# Alias definitions.
+# You may want to put all your additions into a separate file like
+# ~/.bash_aliases, instead of adding them here directly.
+# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+# enable color support of ls and also add handy aliases
+if [ "$TERM" != "dumb" ] && [ -x /usr/bin/dircolors ]; then
+    eval "`dircolors -b`"
+    alias ls='ls --color=auto'
+    #alias dir='ls --color=auto --format=vertical'
+    #alias vdir='ls --color=auto --format=long'
+
+    #alias grep='grep --color=auto'
+    #alias fgrep='fgrep --color=auto'
+    #alias egrep='egrep --color=auto'
+fi
+
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+fi
+
+# bash completion - homebrew
+if command brew -v > /dev/null 2>&1 && [ -f `brew --prefix`/etc/bash_completion ]; then
+  . `brew --prefix`/etc/bash_completion
+fi
+
+# bash completion - boom
+boom_completion_path=$(echo $(command -v rbenv > /dev/null && rbenv prefix)/lib/ruby/gems/*/gems/boom-*/completion/boom.bash)
+if [ -f "$boom_completion_path" ]; then
+  . "$boom_completion_path"
+fi
+
+# Mad o2sms tab-completion hax a la mu
+_o2smscomp () { COMPREPLY=( $(grep "^alias ${COMP_WORDS[COMP_CWORD]}" ~/."$1"/config 2>/dev/null | cut -d' ' -f2) ); return 0; }
+complete -F _o2smscomp o2sms
+complete -F _o2smscomp vodasms
+complete -F _o2smscomp meteorsms
+
+_heycomp () { COMPREPLY=( $(w -h | awk '{print $1}' | sort -u | grep "^${COMP_WORDS[COMP_CWORD]}") ); return 0; }
+complete -F _heycomp hey
+
+function image() {
+  convert $1 -resize 40 txt:-|sed -E 's/://;s/\( ? ?//;s/, ? ?/,/g;s/\)//;s/([0-9]+,[0-9]+,[0-9]+),[0-9]+/\1/g;s/255/254/g;/mage/d'|awk '{print $1,$2}'|sed -E 's/^0,[0-9]+ /print "echo;tput setaf "\;/;s/^[0-9]+,[0-9]+ /print "tput setaf ";/;s/(.+),(.+),(.+)/\1\/42.5*36+\2\/42.5*6+\3\/42.5+16/'|bc|sed 's/$/;echo -n "  ";/'|tr '\n' ' '|sed 's/^/tput rev;/;s/; /;/g;s/$/tput sgr0;echo/'|bash
+}
+
+case `hostname | sed 's/\..*$//'` in
+"raspbmc")
+	pscode=35
+	;;
+"revo")
+	pscode=32
+	;;
+"appa")
+	pscode=35
+	;;
+"copperhead")
+	pscode=31
+	;;
+"wolverine")
+	pscode=33
+	;;
+"landshark")
+  pscode=95
+  ;;
+**)
+	pscode=37
+	;;
+esac
+
+if [ "$color_prompt" = yes ]; then
+  #PS1='\[\033[01;30m\][$(date +"%Y-%m-%d %H:%M:%S")] \[\033[01;'$pscode'm\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(parse_git_branch)'`$HOME/Dropbox/bin/rand_symbol`' '
+  #PROMPT_COMMAND='__git_ps1 "\[\033[01;30m\][$(date +"%Y-%m-%d %H:%M:%S")]\[\033[01;'$pscode'm\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]" "'$($HOME/Dropbox/bin/rand_symbol)' "'
+#  PS1='\[\033[01;30m\][$(date +"%Y-%m-%d %H:%M:%S")]\[\033[01;'$pscode'm\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(__git_ps1)'$($HOME/Dropbox/bin/rand_symbol)' '
+  PS1='\[\033[01;'$pscode'm\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(__git_ps1)'$($HOME/Dropbox/bin/rand_symbol)' '
+else
+  PS1='\u@\h:\w\$ '
+fi
+unset color_prompt force_color_prompt
+
+export EDITOR=vim;
+
+if [[ -d "/usr/local/sbin" ]]; then
+  PATH="/usr/local/sbin:"$PATH;
+fi
+
+if [[ -d "/usr/local/bin" ]]; then
+  PATH="/usr/local/bin:"$PATH;
+fi
+
+if [[ -d "/opt/local/bin" ]]; then
+  PATH="/opt/local/bin:"$PATH;
+fi
+
+if [[ -d "$HOME/.cabal/bin" ]]; then
+  PATH="$HOME/.cabal/bin":$PATH;
+fi
+
+if [[ -d "$HOME/Dropbox/bin" ]]; then
+  PATH="$HOME/Dropbox/bin":$PATH;
+fi
+
+if [[ -d "$HOME/bin" ]]; then
+  PATH="$HOME/bin":$PATH;
+fi
+
+if [[ -d "/usr/local/opt/coreutils/libexec/gnubin" ]]; then
+  PATH="/usr/local/opt/coreutils/libexec/gnubin":$PATH;
+fi
+
+if [[ -d "$HOME/.rbenv/bin" ]]; then
+  PATH="$HOME/.rbenv/bin":$PATH;
+fi
+
+if which brew > /dev/null && [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
+  gitprompt_src="$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh"
+elif [ -f "$HOME/src/bash-git-prompt/gitprompt.sh" ]; then
+  gitprompt_src="$HOME/src/bash-git-prompt/gitprompt.sh"
+fi
+
+if [ -n $gitprompt_src ]; then
+  GIT_PROMPT_THEME=Solarized;
+  GIT_PROMPT_ONLY_IN_REPO=1;
+  #GIT_PROMPT_START="\[\033[01;30m\][$(date +"%Y-%m-%d %H:%M:%S")]\[\033[01;"$pscode"m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]";
+  GIT_PROMPT_START="\[\033[01;"$pscode"m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]";
+  GIT_PROMPT_END="$($HOME/Dropbox/bin/rand_symbol) ";
+  source "$gitprompt_src";
+fi
+
+if which brew > /dev/null && [ -f "$(brew --prefix nvm)/nvm.sh" ]; then
+  export NVM_DIR=~/.nvm
+  source "$(brew --prefix nvm)/nvm.sh"
+fi
+
+if which rbenv > /dev/null; then
+  eval "$(rbenv init -)";
+fi
+
+if [ -f "$HOME/src/dircolors-solarized/dircolors.256dark" ]; then
+  eval $(dircolors "$HOME/src/dircolors-solarized/dircolors.256dark")
+fi
+
+export PATH;
+export HISTSIZE=100000;
+export NNTPSERVER=news.gmane.org;
+export DISABLE_SPRING=true;
+
+if [[ -f "$HOME/.amazon-keys" ]]; then
+  source "$HOME/.amazon-keys";
+fi
+
+if [[ -f "$HOME/Dropbox/dot_files/bash/$(hostname -s).rc" ]]; then
+  source "$HOME/Dropbox/dot_files/bash/$(hostname -s).rc";
+fi
+
+motd_image="$HOME/Dropbox/dot_files/motd/motd.default"
+if [[ -f "$HOME/Dropbox/dot_files/motd/motd.$(hostname -s)" ]]; then
+  motd_image="$HOME/Dropbox/dot_files/motd/motd.$(hostname -s)";
+fi
+cat $motd_image;
+
+function boot_gpg_agent {
+  if which gpg-agent > /dev/null; then
+    export GPG_TTY=$(tty)
+    if ! pgrep gpg-agent > /dev/null; then
+      gpg-agent --daemon --enable-ssh-support --write-env-file "${HOME}/.gpg-agent-info" > /dev/null
+    fi
+    if [ -f "${HOME}/.gpg-agent-info" ]; then
+      . "${HOME}/.gpg-agent-info"
+      export GPG_AGENT_INFO
+    fi
+  fi
+}
+boot_gpg_agent

@@ -1,0 +1,16 @@
+require: rubocop-rspec
+
+AllCops:
+  TargetRubyVersion: 2.3
+  Severity: refactor
+  DisplayCopNames: true
+  DisplayStyleGuide: true
+
+Rails:
+  Enabled: true
+
+Metrics/LineLength:
+  Max: 200
+
+Metrics/MethodLength:
+  Max: 15

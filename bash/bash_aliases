@@ -1,0 +1,20 @@
+# misc
+alias ls='ls --color'
+alias secpass='pwgen -y 24 1';
+alias beet-import="beet -d $HOME/music.real/ import -t ";
+
+# ruby
+alias be="bundle exec"
+alias rake="be rake"
+alias rails="be rails"
+alias rspec="be rspec --format documentation --color"
+alias muster="bundle exec muster"
+
+# boom
+alias bgl='boom gif | less'
+
+# gpg-agent
+alias fix-gpg='ps -ef | grep -e [g]pg -e shutdown-[g]pg | awk '"'"'{print $2}'"'"' | xargs kill -9; boot_gpg_agent'
+
+# git-annex
+alias ga-ncdu='~/Dropbox/code/ga-ncdu.pl . | ncdu -f-'

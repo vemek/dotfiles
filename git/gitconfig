@@ -1,0 +1,72 @@
+[init]
+  templatedir = ~/Dropbox/dot_files/git-hooks
+
+[user]
+	name = Mark King
+	email = mark@vemek.co
+
+[alias]
+  co = checkout
+  cm = commit
+  st = status -sb
+  hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+  type = cat-file -t
+  dump = cat-file -p
+  files = show --pretty=format: --name-only
+  llog = log --date=local
+  flog = log --pretty=fuller --decorate
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  fixup = commit --amend --no-edit
+  unstage = reset HEAD
+  assume   = update-index --assume-unchanged
+  unassume = update-index --no-assume-unchanged
+  assumed  = "!git ls-files -v | grep ^h | cut -c 3-"
+  recent = "!git for-each-ref --sort=committerdate refs/heads/ | head -n 10 | awk '{gsub(\"refs/heads/\",\"\",$3);print $3}'"
+  rm-merged = "!git branch --merged origin/master | grep -v '.\\smaster' | xargs git branch -d"
+
+[color]
+	branch = auto
+	diff = auto
+	interactive = auto
+	status = auto
+	ui = auto
+
+[pull]
+  ff = only
+
+[rerere]
+	enabled = true
+
+[apply]
+	whitespace = nowarn
+
+[branch]
+	autosetupmerge = true
+
+[rebase]
+	autosquash = true
+
+[core]
+	excludesfile = /Users/vemek/.gitignore_global
+
+[fetch]
+  prune = true
+
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
+
+[annex]
+  rsync-options = --partial --progress --human-readable
+  sshcaching = false
+
+[pager]
+	diff = ~/src/so-fancy/diff-so-fancy/diff-so-fancy | less --tabs=1,5 -RFX
+	show = ~/src/so-fancy/diff-so-fancy/diff-so-fancy | less --tabs=1,5 -RFX
+
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22

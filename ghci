@@ -1,0 +1,2 @@
+:set editor vim
+:def hoogle \str -> return $ ":! ~/.cabal/bin/hoogle --count=15 \"" ++ str ++ "\""

@@ -1,0 +1,2 @@
+# <target name>	<source device>		<key file>	<options>
+swap    /dev/disk/by-id/some-disk-part  /dev/urandom    swap,cipher=aes-xts-plain64,size=256

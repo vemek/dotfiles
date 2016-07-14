@@ -1,0 +1,46 @@
+Host nightcrawler
+  Hostname nightcrawler.vemek.co
+
+Host ultron-external
+  Hostname ultron.vemek.co
+  User root
+  Port 4242
+
+Host ultron
+  Hostname 192.168.1.1
+  User root
+
+Host nupraptor
+Host nupraptor-internal
+Host nupraptor*
+  Hostname 192.168.1.42
+
+Host *-internal
+  ProxyCommand ssh -W %h:%p ultron-external
+
+Host spoon
+  User mk429
+  Hostname spoon.netsoc.tcd.ie
+
+Host cube
+  User mk429
+  Hostname cube.netsoc.tcd.ie
+
+Host bastion.internal.intercom.io *.amazonaws.com console.intercom.io
+  StrictHostKeyChecking no
+  UserKnownHostsFile /dev/null
+
+Host *.amazonaws.com console.intercom.io
+  User ec2-user
+  ProxyCommand ssh -W %h:%p bastion.internal.intercom.io
+
+Host *
+  User vemek
+  ServerAliveInterval 20
+  ServerAliveCountMax 4
+  ControlMaster auto
+  ControlPath ~/.ssh/cm-%r@%h:%p
+  ControlPersist 30m
+  #KexAlgorithms curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256
+  # CVE https://www.digitalocean.com/community/tutorials/how-to-fix-openssh-s-client-bug-cve-0216-0777-and-cve-0216-0778-by-disabling-useroaming
+  UseRoaming no
