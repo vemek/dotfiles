@@ -1,0 +1,12 @@
+bedroom_lights:
+  name: Bedroom Lights
+  entities:
+    - light.tv
+    - light.nightstand
+    - switch.fairy_lights
+  icon: mdi:lightbulb
+
+my_devices:
+  name: My Devices
+  entities:
+    - device_tracker.marknexus

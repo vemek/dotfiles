@@ -1,0 +1,84 @@
+homeassistant:
+  name: Home
+  latitude: 53.4620
+  longitude: -6.2365
+  elevation: 37
+  unit_system: metric
+  time_zone: Europe/Dublin
+  customize:
+    group.my_devices:
+      hidden: true
+
+# Enables the frontend
+frontend:
+
+http:
+  #api_password: PASSWORD
+  #server_host: 10.8.0.6
+  #port:
+
+# Checks for available updates
+updater:
+
+# Discover some devices automatically
+discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time.
+history:
+
+# View all events in a logbook
+logbook:
+
+# Track the sun
+sun:
+
+# Weather prediction
+sensor:
+  platform: yr
+
+# Presence detection
+device_tracker:
+  platform: ddwrt
+  host: 192.168.1.1
+  username: admin
+  password: !secret router_password
+  track_new_devices: no
+  interval_seconds: 60
+  consider_home: 300
+
+media_player:
+  - platform: kodi
+    host: http://127.0.0.1
+    port: 8080
+    location: TV
+#  - platform: mpd
+#    host: 10.8.0.26
+#    port: 6600
+#    location: RedRaven
+
+device_sun_light_trigger:
+  light_group: group.bedroom
+  device_group: group.my_devices
+  #light_profile: relax
+  disable_turn_off: 0
+
+notify:
+  name: pushover
+  platform: pushover
+  api_key: !secret pushover_api_key
+  user_key: !secret pushover_user_key
+
+wemo:
+  static:
+    - 192.168.1.145
+
+group: !include groups.yaml
+
+switch: !include switches.yaml
+
+automation: !include automations.yaml
+
+script: !include scripts.yaml

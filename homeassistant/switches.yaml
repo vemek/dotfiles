@@ -1,0 +1,12 @@
+- platform: flux
+  lights:
+    - light.tv
+    - light.nightstand
+  name: Fluxer
+  start_time: '7:00'
+  stop_time: '23:00'
+  start_colortemp: 5700
+  sunset_colortemp: 4500
+  stop_colortemp: 1900
+  brightness: 200
+  mode: xy
