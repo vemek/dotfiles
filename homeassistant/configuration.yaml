@@ -21,7 +21,7 @@ http:
 updater:
 
 # Discover some devices automatically
-discovery:
+# discovery:
 
 # Allows you to issue voice commands from the frontend in enabled browsers
 conversation:
@@ -54,16 +54,12 @@ media_player:
     host: http://127.0.0.1
     port: 8080
     location: TV
+  - platform: cast
+    host: 192.168.1.123
 #  - platform: mpd
 #    host: 10.8.0.26
 #    port: 6600
 #    location: RedRaven
-
-device_sun_light_trigger:
-  light_group: group.bedroom
-  device_group: group.my_devices
-  #light_profile: relax
-  disable_turn_off: 0
 
 notify:
   name: pushover
@@ -74,6 +70,8 @@ notify:
 wemo:
   static:
     - 192.168.1.145
+
+light: !include lights.yaml
 
 group: !include groups.yaml
 
