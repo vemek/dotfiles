@@ -10,3 +10,9 @@
   stop_colortemp: 1900
   brightness: 200
   mode: xy
+- platform: tplink
+  host: 192.168.1.99
+  name: Fan
+- platform: tplink
+  host: 192.168.1.98
+  name: Heater
