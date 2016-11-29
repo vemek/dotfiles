@@ -3,25 +3,22 @@
 import os, shutil
 
 links = {
-  'vim/vimrc':            '.vimrc',
-  'vim/vim':              '.vim',
+  'vimrc':                '.vimrc',
   'bash/bashrc':          '.bashrc',
   'bash/bash_aliases':    '.bash_aliases',
   'bash/inputrc':         '.inputrc',
-  'gitconfig':            '.gitconfig',
-  'gitignore':            '.gitignore_global',
+  'git/gitconfig':        '.gitconfig',
+  'git/gitignore':        '.gitignore_global',
   'ghci':                 '.ghci',
-  'ssh/sshconfig':        '.ssh/config',
-  'tmux.conf':            '.tmux.conf',
+  'sshconfig':            '.ssh/config',
   'ruby/bundle':          '.bundle/config',
   'ruby/gemrc':           '.gemrc',
   'boom':                 '.boom',
   'ruby/rubocop.yml':     '.rubocop.yml',
-  'kwmrc':                '.kwm/kwmrc',
 }
 
 for hard, soft in links.iteritems():
-  src = os.path.join(os.path.expanduser('~/Dropbox/dot_files/'), hard)
+  src = os.path.join(os.path.expanduser('~/src/vemek/dotfiles/'), hard)
   dst = os.path.join(os.path.expanduser('~/'), soft)
   dirname = os.path.dirname(dst)
 

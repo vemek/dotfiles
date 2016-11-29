@@ -1,5 +1,5 @@
 [init]
-  templatedir = ~/Dropbox/dot_files/git-hooks
+  templatedir = ~/src/vemek/dotfiles/git-hooks
 
 [user]
 	name = Mark King
@@ -62,8 +62,8 @@
   sshcaching = false
 
 [pager]
-	diff = ~/src/so-fancy/diff-so-fancy/diff-so-fancy | less --tabs=1,5 -RFX
-	show = ~/src/so-fancy/diff-so-fancy/diff-so-fancy | less --tabs=1,5 -RFX
+	diff = ~/src/util/diff-so-fancy/diff-so-fancy | less --tabs=1,5 -RFX
+	show = ~/src/util/diff-so-fancy/diff-so-fancy | less --tabs=1,5 -RFX
 
 [color "diff-highlight"]
 	oldNormal = red bold

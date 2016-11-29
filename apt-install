@@ -1,0 +1,14 @@
+vim
+firmware-linux
+
+# Build tools
+git
+build-essential
+
+# rbenv
+ruby
+libssl-dev
+
+# gpg card
+gpgsm
+
