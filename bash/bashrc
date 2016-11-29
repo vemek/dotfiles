@@ -165,8 +165,8 @@ if which rbenv > /dev/null; then
   eval "$(rbenv init -)";
 fi
 
-if [ -f "$HOME/src/util/dircolors-solarized/dircolors.256dark" ]; then
-  eval $(dircolors "$HOME/src/util/dircolors-solarized/dircolors.256dark")
+if [ -d "$HOME/src/util/dircolors-solarized" ]; then
+  eval $(dircolors "$HOME/src/util/dircolors-solarized/dircolors.ansi-dark")
 fi
 
 export PATH;

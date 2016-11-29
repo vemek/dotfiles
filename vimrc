@@ -34,8 +34,6 @@ let g:ttimeoutlen = 50
 Plugin 'vim-airline/vim-airline-themes'
 let g:airline_theme = 'base16_solarized'
 
-"Plugin 'airblade/vim-gitgutter'
-
 " NERDTree - left hand side directory tree
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
@@ -98,10 +96,11 @@ set laststatus=2   " Always show the statusline
 set encoding=utf-8 " Necessary to show
 "let g:Powerline_symbols = 'fancy'
 
-syntax enable
-"let g:solarized_termcolors=256
-"set background=dark
-"colorscheme solarized
+syntax on
+let g:solarized_termcolors=256
+set t_Co=256
+set background=dark
+colorscheme solarized
 
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
