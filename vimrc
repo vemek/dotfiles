@@ -97,10 +97,10 @@ set encoding=utf-8 " Necessary to show
 "let g:Powerline_symbols = 'fancy'
 
 syntax on
-let g:solarized_termcolors=256
-set t_Co=256
+let g:solarized_termcolors=16
+set t_Co=16
 set background=dark
-colorscheme solarized
+colorscheme slate
 
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/

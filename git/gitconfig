@@ -1,5 +1,5 @@
 [init]
-  templatedir = ~/src/vemek/dotfiles/git-hooks
+  templatedir = ~/src/vemek/dotfiles/git/git-hooks
 
 [user]
 	name = Mark King
@@ -22,7 +22,7 @@
   unassume = update-index --no-assume-unchanged
   assumed  = "!git ls-files -v | grep ^h | cut -c 3-"
   recent = "!git for-each-ref --sort=committerdate refs/heads/ | head -n 10 | awk '{gsub(\"refs/heads/\",\"\",$3);print $3}'"
-  rm-merged = "!git branch --merged origin/master | grep -v '.\\smaster' | xargs git branch -d"
+  rm-merged = "!git branch --merged origin/master | grep -v '.\\smaster' | xargs -r git branch -d"
 
 [color]
 	branch = auto
@@ -47,7 +47,7 @@
 	autosquash = true
 
 [core]
-	excludesfile = /Users/vemek/.gitignore_global
+	excludesfile = ~/.gitignore_global
 
 [fetch]
   prune = true

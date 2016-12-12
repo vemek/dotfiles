@@ -1,7 +1,6 @@
 # misc
 alias ls='ls --color'
 alias secpass='pwgen -y 24 1';
-alias beet-import="beet -d $HOME/music.real/ import -t ";
 
 # ruby
 alias be="bundle exec"
@@ -18,3 +17,6 @@ alias fix-gpg='ps -ef | grep -e [g]pg -e shutdown-[g]pg | awk '"'"'{print $2}'"'
 
 # git-annex
 alias ga-ncdu='~/Dropbox/code/ga-ncdu.pl . | ncdu -f-'
+
+# vim
+alias vimtab="vim -c ':tab all'"
