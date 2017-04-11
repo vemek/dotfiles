@@ -23,7 +23,7 @@ set statusline+=%*
 "let g:syntastic_always_populate_loc_list = 1
 "let g:syntastic_auto_loc_list = 1
 let g:syntastic_aggregate_errors = 1
-let g:syntastic_ruby_checkers = ['mri', 'rubocop']
+let g:syntastic_ruby_checkers = ['mri', 'rubocop', 'reek']
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq=0
 
@@ -62,7 +62,8 @@ Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'thoughtbot/vim-rspec'
 map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>s :call RunNearestSpec()<CR>
-let g:rspec_command = "!bundle exec rspec --format documentation --color {spec}"
+"let g:rspec_command = "!bundle exec rspec --format documentation --color {spec}"
+let g:rspec_command = "!pilot exec intercom -- bundle exec rspec --format documentation --color {spec}"
 
 " ag search from within vim, always search from project root
 Plugin 'rking/ag.vim'
@@ -100,7 +101,7 @@ syntax on
 let g:solarized_termcolors=16
 set t_Co=16
 set background=dark
-colorscheme slate
+colorscheme solarized
 
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/

@@ -1,13 +1,14 @@
 # misc
-alias ls='ls --color'
-alias secpass='pwgen -y 24 1';
+#alias ls='ls --color'
+alias secpass='pwgen -y 24 1'
+alias wtfdocker='docker stats $(docker ps --format={{.Names}})'
 
 # ruby
-alias be="bundle exec"
+alias be="pilot exec intercom -- bundle exec"
 alias rake="be rake"
 alias rails="be rails"
 alias rspec="be rspec --format documentation --color"
-alias muster="bundle exec muster"
+alias rspecgit='rspec $(git diff-tree --no-commit-id --name-only -r HEAD | grep spec)'
 
 # boom
 alias bgl='boom gif | less'
@@ -19,4 +20,5 @@ alias fix-gpg='ps -ef | grep -e [g]pg -e shutdown-[g]pg | awk '"'"'{print $2}'"'
 alias ga-ncdu='~/Dropbox/code/ga-ncdu.pl . | ncdu -f-'
 
 # vim
-alias vimtab="vim -c ':tab all'"
+alias vim="vim -c ':tab all'"
+alias vimgit='vim $(git diff-tree --no-commit-id --name-only -r HEAD)'
