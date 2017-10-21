@@ -2,7 +2,7 @@ bedroom_lights:
   name: Bedroom Lights
   entities:
     - light.tv
-    - light.nightstand
+    - switch.nightstand
     - switch.fairy_lights
   icon: mdi:lightbulb
 

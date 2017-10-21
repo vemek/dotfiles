@@ -1,5 +1,6 @@
 # misc
 alias ls='ls --color'
+alias tree='tree -C'
 alias secpass='pwgen -y 24 1';
 
 # ruby

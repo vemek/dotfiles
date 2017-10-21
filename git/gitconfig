@@ -24,6 +24,9 @@
   recent = "!git for-each-ref --sort=committerdate refs/heads/ | head -n 10 | awk '{gsub(\"refs/heads/\",\"\",$3);print $3}'"
   rm-merged = "!git branch --merged origin/master | grep -v '.\\smaster' | xargs -r git branch -d"
 
+[status]
+  showUntrackedFiles = all
+
 [color]
 	branch = auto
 	diff = auto
@@ -60,6 +63,7 @@
 [annex]
   rsync-options = --partial --progress --human-readable
   sshcaching = false
+  diskreserve = 1GB
 
 [pager]
 	diff = ~/src/util/diff-so-fancy/diff-so-fancy | less --tabs=1,5 -RFX
