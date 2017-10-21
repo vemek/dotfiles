@@ -30,7 +30,36 @@ Plug 'tpope/vim-unimpaired'
 Plug 'mileszs/ack.vim'
 let g:ackprg = 'ag --vimgrep --smart-case'
 
+" Automatically close blocks
+Plug 'tpope/vim-endwise'
+
+" Language packs
+Plug 'sheerun/vim-polyglot'
+
+" Syntax checker
+Plug 'w0rp/ale'
+
+" Multiple cursors with Ctrl-n
+Plug 'terryma/vim-multiple-cursors'
+
+" Better line numbering
+Plug 'myusuf3/numbers.vim'
+
+" Autocompletion
+Plug 'valloric/youcompleteme'
+
 call plug#end()
+" }}}
+
+" Spaces & Tabs {{{
+set tabstop=2
+set expandtab " use spaces for tabs
+set softtabstop=2 " 4 space tab
+set shiftwidth=2
+set modelines=1
+filetype indent on
+filetype plugin on
+set autoindent
 " }}}
 
 " Colours {{{
