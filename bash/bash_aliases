@@ -20,4 +20,4 @@ alias fix-gpg='ps -ef | grep -e [g]pg -e shutdown-[g]pg | awk '"'"'{print $2}'"'
 alias ga-ncdu='~/Dropbox/code/ga-ncdu.pl . | ncdu -f-'
 
 # vim
-alias vimtab="vim -c ':tab all'"
+#alias vimtab="vim -c ':tab all'"

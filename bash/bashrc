@@ -68,12 +68,6 @@ if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
 
-# bash completion - boom
-boom_completion_path=$(echo $(command -v rbenv > /dev/null && rbenv prefix)/lib/ruby/gems/*/gems/boom-*/completion/boom.bash)
-if [ -f "$boom_completion_path" ]; then
-  . "$boom_completion_path"
-fi
-
 function image() {
   convert $1 -resize 40 txt:-|sed -E 's/://;s/\( ? ?//;s/, ? ?/,/g;s/\)//;s/([0-9]+,[0-9]+,[0-9]+),[0-9]+/\1/g;s/255/254/g;/mage/d'|awk '{print $1,$2}'|sed -E 's/^0,[0-9]+ /print "echo;tput setaf "\;/;s/^[0-9]+,[0-9]+ /print "tput setaf ";/;s/(.+),(.+),(.+)/\1\/42.5*36+\2\/42.5*6+\3\/42.5+16/'|bc|sed 's/$/;echo -n "  ";/'|tr '\n' ' '|sed 's/^/tput rev;/;s/; /;/g;s/$/tput sgr0;echo/'|bash
 }
@@ -103,7 +97,7 @@ case `hostname | sed 's/\..*$//'` in
 esac
 
 if [ "$color_prompt" = yes ]; then
-  PS1='\[\033[01;'$pscode'm\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(__git_ps1)'$($HOME/Dropbox/bin/rand_symbol)' '
+  PS1='\[\033[01;'$pscode'm\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
   PS1='\u@\h:\w\$ '
 fi
@@ -153,7 +147,7 @@ if [ -n $gitprompt_src ]; then
   GIT_PROMPT_FETCH_REMOTE_STATUS=0
   #GIT_PROMPT_START="\[\033[01;30m\][$(date +"%Y-%m-%d %H:%M:%S")]\[\033[01;"$pscode"m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]";
   GIT_PROMPT_START="\[\033[01;"$pscode"m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]";
-  GIT_PROMPT_END="$($HOME/Dropbox/bin/rand_symbol) ";
+  GIT_PROMPT_END="$ ";
   source "$gitprompt_src";
 fi
 
@@ -168,6 +162,12 @@ fi
 
 if [ -d "$HOME/src/util/dircolors-solarized" ]; then
   eval $(dircolors "$HOME/src/util/dircolors-solarized/dircolors.ansi-dark")
+fi
+
+if [ -d "$HOME/.pilot/bin" ]; then
+  export PATH="$HOME/.pilot/shims:$HOME/.pilot/bin:$PATH"
+  eval $(pilot env)
+  export INTERCOM_USER=mark
 fi
 
 export PATH;
@@ -185,21 +185,13 @@ if [[ -f "$HOME/Dropbox/dot_files/motd/motd.$(hostname -s)" ]]; then
 fi
 cat $motd_image;
 
-function boot_gpg_agent {
-  if which gpg-agent > /dev/null; then
-    export GPG_TTY=$(tty)
-    if ! pgrep gpg-agent > /dev/null; then
-      gpg-agent --daemon --enable-ssh-support --write-env-file "${HOME}/.gpg-agent-info" > /dev/null
-    fi
-    if [ -f "${HOME}/.gpg-agent-info" ]; then
-      . "${HOME}/.gpg-agent-info"
-      export GPG_AGENT_INFO
-    fi
-  fi
-}
-boot_gpg_agent
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+if [ -d "$HOME/.pyenv" ]; then
+  export PYENV_ROOT="$HOME/.pyenv"
+  export PATH="$PYENV_ROOT/bin:$PATH"
+  eval "$(pyenv init -)"
+fi
+
+gpg-connect-agent /bye
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash

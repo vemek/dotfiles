@@ -43,10 +43,14 @@ Plug 'w0rp/ale'
 Plug 'terryma/vim-multiple-cursors'
 
 " Better line numbering
-Plug 'myusuf3/numbers.vim'
+"Plug 'myusuf3/numbers.vim'
 
 " Autocompletion
 Plug 'valloric/youcompleteme'
+
+" Rspec runner
+Plug 'thoughtbot/vim-rspec'
+let g:rspec_command = "!bundle exec rspec --format documentation --color {spec}"
 
 call plug#end()
 " }}}
@@ -78,4 +82,10 @@ nmap <M-k>    :Ack! "\b<cword>\b" <CR>
 nmap <Esc>k   :Ack! "\b<cword>\b" <CR>
 " Close quickfix window
 nmap \x :cclose <CR>
+" Run Rspec
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
 " }}}
+
+" jump to the last position when reopening a file
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
