@@ -169,6 +169,9 @@ if [ -d "$HOME/.pilot/bin" ]; then
   eval $(pilot env)
   export INTERCOM_USER=mark
 fi
+if [ -d "/usr/local/opt/findutils/libexec/gnubin" ]; then
+  export PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH"
+fi
 
 export PATH;
 export HISTSIZE=100000;

@@ -52,6 +52,9 @@ Plug 'valloric/youcompleteme'
 Plug 'thoughtbot/vim-rspec'
 let g:rspec_command = "!bundle exec rspec --format documentation --color {spec}"
 
+" Org Mode
+Plug 'jceb/vim-orgmode'
+
 call plug#end()
 " }}}
 
@@ -74,6 +77,7 @@ colorscheme solarized
 
 " Key bindings {{{
 let mapleader = " " " the leader knows all and sees all
+let maplocalleader = "\\"
 nnoremap Q <nop>
 nmap ; :Buffers<CR>
 nmap <Leader>f :Files<CR>
