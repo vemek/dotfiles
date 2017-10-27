@@ -23,6 +23,9 @@ Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-gitgutter'
 let g:gitgutter_realtime = 1
 
+" Git commands
+Plug 'tpope/vim-fugitive'
+
 " Key binding pairs
 Plug 'tpope/vim-unimpaired'
 
@@ -73,6 +76,13 @@ set autoindent
 syntax enable
 set background=dark
 colorscheme solarized
+" Highlight extra whitespace in red
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
 " }}}
 
 " Key bindings {{{
