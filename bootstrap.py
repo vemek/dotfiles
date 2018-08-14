@@ -10,10 +10,10 @@ links = {
   'git/gitconfig':        '.gitconfig',
   'git/gitignore':        '.gitignore_global',
   'ghci':                 '.ghci',
-  'sshconfig':            '.ssh/config',
+  'ssh/config':           '.ssh/config',
+  'ssh/public_keys':      '.ssh/authorized_keys',
   'ruby/bundle':          '.bundle/config',
   'ruby/gemrc':           '.gemrc',
-  'boom':                 '.boom',
   'ruby/rubocop.yml':     '.rubocop.yml',
 }
 
