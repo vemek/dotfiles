@@ -15,7 +15,7 @@
   files = show --pretty=format: --name-only
   llog = log --date=local
   flog = log --pretty=fuller --decorate
-  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
   fixup = commit --amend --no-edit
   unstage = reset HEAD
   assume   = update-index --assume-unchanged

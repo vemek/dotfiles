@@ -14,6 +14,7 @@ Plug 'tpope/vim-sensible'
 
 " NERDTree
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+let NERDTreeShowBookmarks=1
 
 " Fuzzy file search
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -21,10 +22,11 @@ Plug 'junegunn/fzf.vim'
 
 " Git gutter
 Plug 'airblade/vim-gitgutter'
-let g:gitgutter_realtime = 1
+let g:gitgutter_realtime = 0
 
 " Git commands
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 
 " Key binding pairs
 Plug 'tpope/vim-unimpaired'
@@ -53,10 +55,14 @@ Plug 'valloric/youcompleteme'
 
 " Rspec runner
 Plug 'thoughtbot/vim-rspec'
-let g:rspec_command = "!bundle exec rspec --format documentation --color {spec}"
+let g:rspec_command = ":terminal ./script/test -- --format documentation --color {spec}"
+"let g:rspec_command = "!bundle exec rspec --format documentation --color {spec}"
 
-" Org Mode
-Plug 'jceb/vim-orgmode'
+" Spec finder
+Plug 'skwp/vim-spec-finder'
+
+" Terraform formatter
+Plug 'hashivim/vim-terraform'
 
 call plug#end()
 " }}}
@@ -91,15 +97,28 @@ let maplocalleader = "\\"
 nnoremap Q <nop>
 nmap ; :Buffers<CR>
 nmap <Leader>f :Files<CR>
+
 " Search for current word in codebase
 nmap <M-k>    :Ack! "\b<cword>\b" <CR>
 nmap <Esc>k   :Ack! "\b<cword>\b" <CR>
+
 " Close quickfix window
 nmap \x :cclose <CR>
-" Run Rspec
+
+" Rspec
 map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :RelatedSpecOpen<CR>
+
+" Toggle NERDTree
+map <Leader>b :NERDTreeToggle<CR>
 " }}}
+
+" Buffers play nice
+set autowriteall
 
 " jump to the last position when reopening a file
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+set re=1
+set ttyfast
+set lazyredraw
