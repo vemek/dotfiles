@@ -2,6 +2,13 @@
 "
 
 " Vim Plug {{{
+" auto installation
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 call plug#begin('~/.vim/plugged')
 
 " colour scheme
@@ -63,6 +70,9 @@ Plug 'skwp/vim-spec-finder'
 
 " Terraform formatter
 Plug 'hashivim/vim-terraform'
+
+" Vim Wiki
+Plug 'vimwiki/vimwiki'
 
 call plug#end()
 " }}}
