@@ -1,6 +1,8 @@
 $include /etc/inputrc
 "\e[A": history-search-backward
 "\e[B": history-search-forward
+"\e[7~": beginning-of-line
+"\e[8~": end-of-line
 set show-all-if-ambiguous on
 set colored-stats on
 set completion-ignore-case on

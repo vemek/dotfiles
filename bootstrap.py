@@ -15,6 +15,7 @@ links = {
   'ruby/bundle':          '.bundle/config',
   'ruby/gemrc':           '.gemrc',
   'ruby/rubocop.yml':     '.rubocop.yml',
+  'tmux.conf':            '.byobu/.tmux.conf',
 }
 
 for hard, soft in links.iteritems():
