@@ -62,14 +62,26 @@ Plug 'valloric/youcompleteme'
 
 " Rspec runner
 Plug 'thoughtbot/vim-rspec'
-let g:rspec_command = ":terminal ./script/test -- --format documentation --color {spec}"
-"let g:rspec_command = "!bundle exec rspec --format documentation --color {spec}"
+"let g:rspec_command = ":terminal ./script/test -- --format documentation --color {spec}"
+let g:rspec_command = ":terminal bundle exec rspec {spec}"
 
 " Spec finder
 Plug 'skwp/vim-spec-finder'
 
 " Terraform formatter
 Plug 'hashivim/vim-terraform'
+
+" Ruby LSP client
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+let g:LanguageClient_serverCommands = {
+  \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
+  \ }
+nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
 " Vim Wiki
 Plug 'vimwiki/vimwiki'

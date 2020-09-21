@@ -161,7 +161,7 @@ if which rbenv > /dev/null; then
 fi
 
 if [ -d "$HOME/src/util/dircolors-solarized" ]; then
-  eval $(dircolors "$HOME/src/util/dircolors-solarized/dircolors.ansi-dark")
+  eval $(dircolors "$HOME/src/util/dircolors-solarized/dircolors.256dark")
 fi
 
 if [ -d "$HOME/.pilot/bin" ]; then
@@ -200,5 +200,9 @@ export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 export PATH="$HOME/.yarn/bin:$PATH"
+export PATH="$PATH:/snap/bin"
 export AWS_DEFAULT_REGION="us-east-1"
 source $(which assume-role)
+export PAGER=bat
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
