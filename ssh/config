@@ -1,8 +1,6 @@
-Host ubuntu
-Hostname 54.229.211.36
-Port 22
-User ubuntu
-IdentityFile ~/.ssh/mark-dev-environment.pem
+Host netsoc
+Hostname login.netsoc.tcd.ie
+User mk429
 
 Host *.amazonaws.com *.ec2.internal
 User ec2-user

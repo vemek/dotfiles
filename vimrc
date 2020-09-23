@@ -50,15 +50,20 @@ Plug 'sheerun/vim-polyglot'
 
 " Syntax checker
 Plug 'w0rp/ale'
+let g:ale_ruby_rubocop_executable = 'bundle'
 
 " Multiple cursors with Ctrl-n
 Plug 'terryma/vim-multiple-cursors'
 
 " Better line numbering
-"Plug 'myusuf3/numbers.vim'
+Plug 'myusuf3/numbers.vim'
 
 " Autocompletion
 Plug 'valloric/youcompleteme'
+let g:ycm_collect_identifiers_from_tags_files = 1
+
+" Auto-update ctags
+Plug 'ludovicchabant/vim-gutentags'
 
 " Rspec runner
 Plug 'thoughtbot/vim-rspec'
@@ -90,6 +95,9 @@ let g:vimwiki_list = [{'path': '~/vimwiki', 'template_path': '~/vimwiki/template
           \ 'path_html': '~/vimwiki/site_html/', 'custom_wiki2html': 'vimwiki_markdown',
           \ 'template_ext': '.tpl'}]
 
+" Go
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
 call plug#end()
 " }}}
 
@@ -108,6 +116,7 @@ set autoindent
 syntax enable
 set background=dark
 colorscheme solarized
+hi Comment ctermfg=White
 " Highlight extra whitespace in red
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
@@ -123,6 +132,8 @@ let maplocalleader = "\\"
 nnoremap Q <nop>
 nmap ; :Buffers<CR>
 nmap <Leader>f :Files<CR>
+nmap <Leader>aj :ALENext<cr>
+nmap <Leader>ak :ALEPrevious<cr>
 
 " Search for current word in codebase
 nmap <M-k>    :Ack! "\b<cword>\b" <CR>
@@ -143,8 +154,12 @@ map <Leader>b :NERDTreeToggle<CR>
 " Buffers play nice
 set autowriteall
 
+" Swap files live outside projects
+set directory=~/.vim/swap//
+
 " jump to the last position when reopening a file
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 set re=1
 set ttyfast
 set lazyredraw
+runtime macros/matchit.vim
