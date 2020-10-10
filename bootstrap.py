@@ -16,6 +16,10 @@ links = {
   'ruby/gemrc':           '.gemrc',
   'ruby/rubocop.yml':     '.rubocop.yml',
   'tmux.conf':            '.byobu/.tmux.conf',
+  'i3/config':            '.config/i3/config',
+  'i3/i3status.conf':     '.config/i3/i3status.conf',
+  'i3/compton.conf':     '.config/i3status.conf',
+  'Xdefaults':            '.Xdefaults',
 }
 
 for hard, soft in links.iteritems():
