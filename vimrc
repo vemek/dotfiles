@@ -48,9 +48,17 @@ Plug 'tpope/vim-endwise'
 " Language packs
 Plug 'sheerun/vim-polyglot'
 
+" Jump to usages
+Plug 'pechorin/any-jump.vim'
+
 " Syntax checker
-Plug 'w0rp/ale'
+"Plug 'w0rp/ale'
 let g:ale_ruby_rubocop_executable = 'bundle'
+let g:ale_fixers = {
+  \ 'ruby': ['rubocop', 'trim_whitespace', 'remove_trailing_lines'],
+  \ 'javascript': ['prettier', 'eslint', 'trim_whitespace', 'remove_trailing_lines'],
+  \ 'javascriptreact': ['eslint', 'prettier', 'trim_whitespace', 'remove_trailing_lines'],
+  \}
 
 " Multiple cursors with Ctrl-n
 Plug 'terryma/vim-multiple-cursors'
@@ -59,8 +67,9 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'myusuf3/numbers.vim'
 
 " Autocompletion
-Plug 'valloric/youcompleteme'
-let g:ycm_collect_identifiers_from_tags_files = 1
+Plug 'ajh17/VimCompletesMe'
+"Plug 'valloric/youcompleteme'
+"let g:ycm_collect_identifiers_from_tags_files = 1
 
 " Auto-update ctags
 Plug 'ludovicchabant/vim-gutentags'
@@ -68,7 +77,7 @@ Plug 'ludovicchabant/vim-gutentags'
 " Rspec runner
 Plug 'thoughtbot/vim-rspec'
 "let g:rspec_command = ":terminal ./script/test -- --format documentation --color {spec}"
-let g:rspec_command = ":terminal bundle exec rspec {spec}"
+let g:rspec_command = ":terminal bash -c \"pilot exec intercom -- bin/rspec --format documentation --color $(realpath --relative-to=. {spec})\""
 
 " Spec finder
 Plug 'skwp/vim-spec-finder'

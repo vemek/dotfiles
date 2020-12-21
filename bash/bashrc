@@ -1,3 +1,5 @@
+export SHELL=$(which zsh); [ -n "$SSH_TTY" ] && exec $SHELL
+
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -66,6 +68,9 @@ fi
 # sources /etc/bash.bashrc).
 if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
+fi
+if [ -f /home/linuxbrew/.linuxbrew/etc/bash_completion ]; then
+      . /home/linuxbrew/.linuxbrew/etc/bash_completion
 fi
 
 function image() {
@@ -210,3 +215,5 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export INTERCOM_USER=mark
 export GOPATH="$HOME/.go/"
 export PATH="$GOPATH/bin/:$PATH"
+
+eval "$(intercom-profile)"
