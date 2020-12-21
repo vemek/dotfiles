@@ -155,6 +155,9 @@ map <Leader>b :NERDTreeToggle<CR>
 set autowriteall
 
 " Swap files live outside projects
+if !isdirectory($HOME.'/.vim/swap')
+  call mkdir($HOME.'/.vim/swap', 'p')
+endif
 set directory=~/.vim/swap//
 
 " jump to the last position when reopening a file
