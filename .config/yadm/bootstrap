@@ -1,0 +1,29 @@
+#!/bin/sh
+
+CONFIG=$HOME/.config/yadm
+export SYSTEM_TYPE=$(uname -s)
+
+log(){
+  #echo "\e[1;96m> \e[95m$@\e[0m"
+  echo "\033[1;96m> \e[95m$@\e[0m"
+}
+
+# Install required packages
+if [ "$SYSTEM_TYPE" = "Darwin" ]; then
+  log "Install Brewfile"
+  brew bundle install --file $CONFIG/Brewfile
+
+  log "Install packages"
+  log "Packages: "$(cat */packages */packages.brew | sort -u)
+  cat $CONFIG/*/packages $CONFIG/*/packages.brew | sort -u | xargs -n1 brew install
+else
+  packages=$(cat $CONFIG/packages.apt $CONFIG/*/packages $CONFIG/*/packages.apt | sort -u)
+  log "Packages: $(echo $packages)"
+  apt install -y $packages
+fi
+
+# Installers
+for installer in $CONFIG/*/install.sh; do
+  log "Running $installer"
+  $installer
+done
