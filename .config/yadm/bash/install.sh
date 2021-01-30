@@ -1,10 +1,16 @@
 #!/bin/sh
 
-if [ "$SYSTEM_TYPE" = "Darwin" ]; then
-  brew install bash
-fi
+source "$HOME/.config/yadm/util.sh"
+
+log_info "Installing bash and prompt utils"
 
 # Clone utility repos
 mkdir -p "$HOME/src/util"
-git clone https://github.com/magicmonty/bash-git-prompt "$HOME/src/util/bash-git-prompt"
-git clone https://github.com/seebi/dircolors-solarized  "$HOME/src/util/dircolors-solarized"
+
+if [ ! -d "$HOME/src/util/bash-git-prompt" ]; then
+  git clone https://github.com/magicmonty/bash-git-prompt "$HOME/src/util/bash-git-prompt"
+fi
+
+if [ ! -d "$HOME/src/util/dircolors-solarized" ]; then
+  git clone https://github.com/seebi/dircolors-solarized  "$HOME/src/util/dircolors-solarized"
+fi

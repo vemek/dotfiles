@@ -1,1 +1,1 @@
-/root/.config/yadm/vim/vimrc
+.config/yadm/vim/vimrc

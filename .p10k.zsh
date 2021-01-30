@@ -1,0 +1,1 @@
+.config/yadm/zsh/p10k.zsh

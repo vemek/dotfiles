@@ -1,29 +1,39 @@
 #!/bin/sh
 
-CONFIG=$HOME/.config/yadm
-export SYSTEM_TYPE=$(uname -s)
+source "$HOME/.config/yadm/util.sh"
 
-log(){
-  #echo "\e[1;96m> \e[95m$@\e[0m"
-  echo "\033[1;96m> \e[95m$@\e[0m"
+brew_install() {
+  if ! brew list $@ 1>/dev/null 2>&1; then
+    brew install $@
+  fi
 }
 
 # Install required packages
 if [ "$SYSTEM_TYPE" = "Darwin" ]; then
-  log "Install Brewfile"
-  brew bundle install --file $CONFIG/Brewfile
+  log_info "Install packages"
+  packages=$(cat $CONFIG/packages.brew $CONFIG/*/packages $CONFIG/*/packages.brew | sort -u)
+  log_info "Packages: $(echo $packages)"
+  for package in $packages; do
+    brew_install $package
+  done
 
-  log "Install packages"
-  log "Packages: "$(cat */packages */packages.brew | sort -u)
-  cat $CONFIG/*/packages $CONFIG/*/packages.brew | sort -u | xargs -n1 brew install
+  log_info "Install casks"
+  casks=$(cat $CONFIG/packages.cask | sort -u)
+  log_info "Casks: $(echo $casks)"
+  for cask in $casks; do
+    brew_install --cask $cask
+  done
 else
   packages=$(cat $CONFIG/packages.apt $CONFIG/*/packages $CONFIG/*/packages.apt | sort -u)
-  log "Packages: $(echo $packages)"
+  log_info "Packages: $(echo $packages)"
   apt install -y $packages
 fi
 
+echo
+
 # Installers
 for installer in $CONFIG/*/install.sh; do
-  log "Running $installer"
+  log_info "Running $installer"
   $installer
+  echo
 done

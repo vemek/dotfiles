@@ -1,6 +1,8 @@
 #!/bin/sh
 
-echo "> Installing zsh"
+source "$HOME/.config/yadm/util.sh"
+
+log_info "Installing oh-my-zsh and powerlevel10k"
 
 # oh my zsh
 if [ ! -d $HOME/.oh-my-zsh ]; then
@@ -14,4 +16,3 @@ else
   git -C $HOME/.oh-my-zsh/custom/themes/powerlevel10k pull
 fi
 
-echo
