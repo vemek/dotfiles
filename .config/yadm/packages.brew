@@ -4,6 +4,7 @@ coreutils
 ctags
 git-annex
 gnupg
+haskell-stack
 htop
 httpie
 lxc
