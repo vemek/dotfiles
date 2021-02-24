@@ -45,3 +45,7 @@ if [ -d "$HOME/src/util/dircolors-solarized" ]; then
 fi
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+for env_file in ~/.config/yadm/*/env.sh; do
+  source "$env_file"
+done
