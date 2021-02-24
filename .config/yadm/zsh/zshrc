@@ -22,7 +22,9 @@ export EDITOR='vim'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-source $HOME/.config/yadm/*/env.sh
+for envfile in $HOME/.config/yadm/*/env.sh; do
+  source "$envfile"
+done
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
