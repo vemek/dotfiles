@@ -1,0 +1,11 @@
+Host *
+  User vemek
+  ServerAliveInterval 20
+  ServerAliveCountMax 4
+  ControlMaster auto
+  #ControlPath ~/.ssh/cm-%r@%h:%p
+  ControlPath ~/.ssh/cm-%C
+  ControlPersist 30m
+  #KexAlgorithms curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256
+  # CVE https://www.digitalocean.com/community/tutorials/how-to-fix-openssh-s-client-bug-cve-0216-0777-and-cve-0216-0778-by-disabling-useroaming
+  UseRoaming no
