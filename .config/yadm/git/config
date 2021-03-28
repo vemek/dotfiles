@@ -1,5 +1,6 @@
 [init]
   templatedir = ~/src/vemek/dotfiles/git/git-hooks
+	defaultBranch = main
 
 [user]
 	name = Mark King
