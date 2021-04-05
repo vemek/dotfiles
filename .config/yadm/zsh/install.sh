@@ -7,6 +7,7 @@ log_info "Installing oh-my-zsh and powerlevel10k"
 # oh my zsh
 if [ ! -d $HOME/.oh-my-zsh ]; then
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+  mv $HOME/.zshrc.pre-oh-my-zsh $HOME/.zshrc # fix OMZ overwriting config
 fi
 
 # powerlevel10k theme
