@@ -26,7 +26,7 @@ if [ "$SYSTEM_TYPE" = "Darwin" ]; then
 else
   packages=$(cat $CONFIG/packages.apt $CONFIG/*/packages $CONFIG/*/packages.apt | sort -u)
   log_info "Packages: $(echo $packages)"
-  apt install -y $packages
+  sudo apt install $packages
 fi
 
 echo

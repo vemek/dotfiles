@@ -1,6 +1,6 @@
 #!/bin/sh
 
-source "$HOME/.config/yadm/util.sh"
+. "$HOME/.config/yadm/util.sh"
 
 log_info "Installing oh-my-zsh and powerlevel10k"
 

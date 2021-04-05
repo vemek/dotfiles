@@ -1,6 +1,6 @@
 #!/bin/sh
 
-source "$HOME/.config/yadm/util.sh"
+. "$HOME/.config/yadm/util.sh"
 
 log_info "Installing bash and prompt utils"
 

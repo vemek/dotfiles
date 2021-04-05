@@ -1,6 +1,6 @@
 #!/bin/sh
 
-source "$HOME/.config/yadm/util.sh"
+. "$HOME/.config/yadm/util.sh"
 
 if [ "$SYSTEM_TYPE" = "Darwin" ]; then
   log_info "Configuring iTerm2"
