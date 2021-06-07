@@ -2,6 +2,8 @@
 
 . "$HOME/.config/yadm/util.sh"
 
+STABLE_RUBY_VERSION="3.0.1"
+
 if [ ! -d "$HOME/.rbenv" ]; then
   log_info "Installing rbenv"
   git clone https://github.com/rbenv/rbenv.git "$HOME/.rbenv"
@@ -16,3 +18,7 @@ fi
 log_info "Updating rbenv and ruby-build"
 git -C "$HOME/.rbenv" pull
 git -C "$HOME/.rbenv/plugins/ruby-build" pull
+
+log_info "Install ruby version $STABLE_RUBY_VERSION"
+rbenv install -v "$STABLE_RUBY_VERSION"
+rbenv global "$STABLE_RUBY_VERSION"

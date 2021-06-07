@@ -90,8 +90,11 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
+let g:LanguageClient_loggingLevel = 'DEBUG'
+let g:LanguageClient_autoStart = 1
 let g:LanguageClient_serverCommands = {
   \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
+  \ 'haskell': ['brew86', 'haskell-language-server-wrapper', '--lsp']
   \ }
 nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>

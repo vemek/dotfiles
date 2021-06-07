@@ -1,5 +1,4 @@
 [init]
-  templatedir = ~/src/vemek/dotfiles/git/git-hooks
 	defaultBranch = main
 
 [user]
@@ -52,7 +51,7 @@
 	autosquash = true
 
 [core]
-	excludesfile = ~/.gitignore_global
+	excludesfile = ~/.config/git/gitignore
 
 [fetch]
   prune = true
