@@ -17,6 +17,7 @@ nmap
 progress
 rsync
 rust
+smartmontools
 the_silver_searcher
 watch
 wget
