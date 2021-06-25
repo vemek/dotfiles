@@ -7,6 +7,9 @@ STABLE_RUBY_VERSION="3.0.1"
 if [ ! -d "$HOME/.rbenv" ]; then
   log_info "Installing rbenv"
   git clone https://github.com/rbenv/rbenv.git "$HOME/.rbenv"
+  # source rbenv shell config. will be loaded by shell RC file on new shell
+  export PATH="$HOME/.rbenv/bin:$PATH"
+  eval "$(rbenv init -)"
 fi
 
 if [ ! -d "$HOME/.rbenv/plugins/ruby-build" ]; then
