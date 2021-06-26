@@ -23,5 +23,5 @@ git -C "$HOME/.rbenv" pull
 git -C "$HOME/.rbenv/plugins/ruby-build" pull
 
 log_info "Install ruby version $STABLE_RUBY_VERSION"
-rbenv install -v "$STABLE_RUBY_VERSION"
+rbenv install -v --skip-existing "$STABLE_RUBY_VERSION"
 rbenv global "$STABLE_RUBY_VERSION"
