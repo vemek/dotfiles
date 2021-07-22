@@ -76,8 +76,7 @@ Plug 'ludovicchabant/vim-gutentags'
 
 " Rspec runner
 Plug 'thoughtbot/vim-rspec'
-"let g:rspec_command = ":terminal ./script/test -- --format documentation --color {spec}"
-let g:rspec_command = ":terminal bundle exec rspec {spec}"
+let g:rspec_command = ":terminal bundle exec rspec --format documentation --color {spec}"
 
 " Spec finder
 Plug 'skwp/vim-spec-finder'

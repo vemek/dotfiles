@@ -4,6 +4,7 @@
 
 brew_install() {
   if ! brew list $@ 1>/dev/null 2>&1; then
+    log_info "Installing $@"
     brew install $@
   fi
 }
@@ -18,7 +19,7 @@ if [ "$SYSTEM_TYPE" = "Darwin" ]; then
   done
 
   log_info "Install casks"
-  casks=$(cat $CONFIG/packages.cask | sort -u)
+  casks=$(cat $CONFIG/packages.cask $CONFIG/*/packages.cask | sort -u)
   log_info "Casks: $(echo $casks)"
   for cask in $casks; do
     brew_install --cask $cask

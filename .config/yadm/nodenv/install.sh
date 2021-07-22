@@ -20,6 +20,9 @@ log_info "Updating nodenv"
 git -C "$HOME/.nodenv" pull
 git -C "$HOME/.nodenv/plugins/node-build" pull
 
+log_info "Install / upgrading yarn"
+npm install --global yarn
+
 log_info "Install node version $STABLE_NODE_VERSION"
 nodenv install -v --skip-existing "$STABLE_NODE_VERSION"
 nodenv global "$STABLE_NODE_VERSION"
