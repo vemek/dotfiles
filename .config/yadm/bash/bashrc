@@ -26,10 +26,6 @@ if [ -f /etc/bash_completion ]; then
   . /etc/bash_completion
 fi
 
-if [ -f ~/.config/yadm/bash/aliases ]; then
-  source ~/.config/yadm/bash/aliases
-fi
-
 if [ -f "$HOME/src/util/bash-git-prompt/gitprompt.sh" ]; then
   gitprompt_src="$HOME/src/util/bash-git-prompt/gitprompt.sh"
   GIT_PROMPT_THEME=Solarized

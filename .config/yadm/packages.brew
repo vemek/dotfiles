@@ -4,6 +4,7 @@ coreutils
 ctags
 git-annex
 gnupg
+golang
 haskell-stack
 htop
 httpie
