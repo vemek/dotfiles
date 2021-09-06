@@ -52,7 +52,6 @@
 
 [core]
 	excludesfile = ~/.config/git/gitignore
-	ignorecase = false
 
 [fetch]
   prune = true
@@ -64,7 +63,6 @@
 
 [annex]
   rsync-options = --partial --progress --human-readable
-  sshcaching = false
   diskreserve = 1GB
 
 [pager]
