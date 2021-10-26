@@ -4,7 +4,7 @@
 [user]
 	name = Mark King
 	email = mark@vemek.co
-	signingkey = EFCD0923
+	signingkey = 69CDF8D53128FBFD40D6302C9E8ADA82612E755E
 
 [alias]
   co = checkout
@@ -76,3 +76,7 @@
 	newHighlight = green bold 22
 [merge]
 	tool = vimdiff
+[commit]
+	gpgsign = true
+[tag]
+	forceSignAnnotated = true

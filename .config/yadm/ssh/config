@@ -10,4 +10,7 @@ Host *
   # CVE https://www.digitalocean.com/community/tutorials/how-to-fix-openssh-s-client-bug-cve-0216-0777-and-cve-0216-0778-by-disabling-useroaming
   UseRoaming no
 
+Host *.lan *.internal.vemek.co nosgoth raziel
+  ForwardAgent yes
+
 Match host * exec "GPG_TTY=$(tty) gpg-connect-agent UPDATESTARTUPTTY /bye"
